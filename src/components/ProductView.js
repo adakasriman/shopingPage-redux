@@ -1,10 +1,12 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getToCart } from '../redux/reducers/cartSlice';
 
 export const ProductView = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const disPatch = useDispatch();
     const { products } = useSelector(store => store.products);
     const viewProduct = products.find(item => item.id == id);
 
@@ -26,7 +28,10 @@ export const ProductView = () => {
                     <div className='mt_30'>
                         <strong>Discription</strong> {viewProduct.description}
                     </div>
+                    <div  className='text_center mt_30'><button onClick={() => disPatch(getToCart(viewProduct))} >Add Cart</button></div>
+                    
                 </div>
+                
             </div>
             <div className='displayFlex_center' style={{justifyContent: "center"}}>
                 <button onClick={() =>navigate("/")} className='backtoProducts'>back to products</button>

@@ -19,6 +19,7 @@ function Header() {
         setIsOpen(!isOpen);
     }
 
+
     const addNewProduct = () => {
         navigate("./newproduct");
     }
@@ -39,8 +40,8 @@ function Header() {
     // const { products } = useSelector(store => store.products);
     return (
         <div className='displayFlex_spacebetween p_20'>
-            <div className='displayFlex_center' style={{gap: "10px"}}>
-            <i className="fa-solid fa-bag-shopping"></i>
+            <div className='displayFlex_center' style={{ gap: "10px" }}>
+                <i className="fa-solid fa-bag-shopping"></i>
                 <a className='project_title' onClick={() => goProducts()}>Fake Shoping</a>
             </div>
 
@@ -79,6 +80,11 @@ function Header() {
                                     })
                                 }
 
+                            </div>
+                            <div>
+                                {
+                                    !cart.length && <div className='justifyContent mt_30'><h5> No Items In Cart</h5></div>
+                                }
                             </div>
                         </>} handleClose={popup} />
                 }
