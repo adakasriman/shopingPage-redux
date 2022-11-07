@@ -5,8 +5,22 @@ import { getToCart } from '../redux/reducers/cartSlice';
 
 export const ProductView = () => {
     const { id } = useParams();
+    /* 
+    useParams() :
+       --> useparmas method come from  react-router-dom
+       --> It is used to get something like id and name from the url 
+    
+    */
     const navigate = useNavigate();
+    /* 
+      useNavigate() :
+            --> useNavigate method come from  react-router-dom
+            --> It is used to navigate to another component.
+ 
+   */
     const disPatch = useDispatch();
+
+    
     const { products } = useSelector(store => store.products);
     const viewProduct = products.find(item => item.id == id);
 
@@ -19,7 +33,7 @@ export const ProductView = () => {
                     </div>
                     <div className='priceAndRating'>
                         <div><strong>Price</strong> {viewProduct.price}</div>
-                        <div><strong>Rationg</strong> {viewProduct.rating.rate? viewProduct.rating.rate: 100}</div>
+                        <div><strong>Rationg</strong> {viewProduct.rating.rate ? viewProduct.rating.rate : 100}</div>
                     </div>
                 </div>
                 <div>
@@ -28,13 +42,13 @@ export const ProductView = () => {
                     <div className='mt_30'>
                         <strong>Discription</strong> {viewProduct.description}
                     </div>
-                    <div  className='text_center mt_30'><button onClick={() => disPatch(getToCart(viewProduct))} >Add Cart</button></div>
-                    
+                    <div className='text_center mt_30'><button onClick={() => disPatch(getToCart(viewProduct))} >Add Cart</button></div>
+
                 </div>
-                
+
             </div>
-            <div className='displayFlex_center' style={{justifyContent: "center"}}>
-                <button onClick={() =>navigate("/")} className='backtoProducts'>back to products</button>
+            <div className='displayFlex_center' style={{ justifyContent: "center" }}>
+                <button onClick={() => navigate("/")} className='backtoProducts'>back to products</button>
             </div>
         </div>
     )

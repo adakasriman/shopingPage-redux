@@ -24,3 +24,15 @@ function App() {
 }
 
 export default App;
+
+
+/*
+ Section: 
+   --> mensions components only will render in section   
+
+   Route : route have two attributes, one is path and second one is element.
+         --> In element only can we assign component 
+
+*/  
+
+

@@ -5,23 +5,23 @@ import axios from "axios";
 
 let initialState = {
     products: [],
-};
+};  // initialing initialState for products
 
 
-export const getProducts = () => {
-    return (dispatch) => {
-        fetch("https://fakestoreapi.com/products", {
-            method: "GET",
+export const getProducts = () => {  // This function for get products from the api
+    return (dispatch) => {  // Its have default dispatch method
+        fetch("https://fakestoreapi.com/products", {  // fecthcing data from the server
+            method: "GET",  // GET method
         })
             .then(res => res.json())
             .then(resData => {
-                dispatch(getProductsList(resData));
+                dispatch(getProductsList(resData)); // dispatching response data to getProductsList reducer
             })
     }
 }
 
 export const addNewItem = (newproduct) => {
-    return (dispatch) => {
+    return (dispatch) => {  // Its have default dispatch method
         fetch('https://fakestoreapi.com/products', {
             method: "POST",
             body: JSON.stringify(
@@ -35,7 +35,7 @@ export const addNewItem = (newproduct) => {
         })
             .then(res => res.json())
             .then(json => {
-                dispatch(addProduct(json));
+                dispatch(addProduct(json)); // adding new product to  addProduct reducer
             });
     }
 }
@@ -53,7 +53,7 @@ export const updateProduct = (product) => {
         })
             .then(res => res.json())
             .then(json => {
-                dispatch(updateProductItem(json))
+                dispatch(updateProductItem(json))  //sending updated product to updateProductItem reducer
             });
     }
 }
@@ -68,16 +68,18 @@ export const deleteProduct = (product) => {
         })
             .then(res => res.json())
             .then(json => {
-                dispatch(deleteProductItem(json? json : product))
+                dispatch(deleteProductItem(json ? json : product))  // deleteing product based on id and sending response  deleteProductItem reducer
             });
     }
 }
 
+
+// reducer ==> do some operation based on action and updating state
 const productSlice = createSlice({
-    name: "product",
+    name: "product", // 
     initialState,
     reducers: {
-        addProduct: (state, action) => {
+        addProduct: (state, action)/* state: initial state of slice , action: action is object that payload etc. */ => { 
             Object.assign(action.payload, { rating: { rate: 10000 } });
             state.products.push(action.payload);
         },

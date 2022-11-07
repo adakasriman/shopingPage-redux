@@ -5,13 +5,14 @@ import axios from "axios";
 let initialState = {
     cart: [],
 };
+  // initialing initialState for cart
 
 
 const cartSlice = createSlice({
     name: "cart",
     initialState,
-    reducers: {
-        getToCart: (state, acton) => {
+    reducers: { // reducers
+        getToCart: (state, acton)/* state: initial state of slice , action: action is object that payload etc. */ => {
             if (state.cart.length == 0) {
                 state.cart.push(acton.payload);
             } else {
